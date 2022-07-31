@@ -1,0 +1,67 @@
+version: "3.8"
+services:
+  rabbitmq:
+    image: rabbitmq:3-management:alpine
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    command:
+      - rabbitmq-server
+  db:
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=eilink_db
+      - POSTGRES_USER=eilink_user
+      - POSTGRES_PASSWORD=eilink_password
+    container_name: postgres_db
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    image: app:django
+    container_name: django_app
+    command: /venv/bin/gunicorn core.wsgi --bind 0.0.0.0:8000
+    depends_on:
+      - db
+  celery_beat:
+    restart: always
+    build:
+      context: .
+    command: /venv/bin/celery -A core beat -l INFO
+    volumes:
+      - .:/django
+    container_name: celery_beat
+    depends_on:
+      - db
+      - rabbitmq
+      - app
+  celery_worker:
+    restart: always
+    build:
+      context: .
+    command: /venv/bin/celery -A core worker -l info
+    container_name: celery_worker
+    depends_on:
+      - db
+      - rabbitmq
+      - app
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nginx-proxy
+    ports:
+      - 80:80
+    volumes:
+      - ./youtube_transcriber/static:/var/www/backend/static
+    depends_on:
+      - app
