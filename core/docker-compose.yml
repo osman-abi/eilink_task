@@ -62,6 +62,6 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./youtube_transcriber/static:/var/www/backend/static
+      - ./core/static:/var/www/backend/static
     depends_on:
       - app
