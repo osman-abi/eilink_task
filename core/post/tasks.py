@@ -1,8 +1,7 @@
 """In this file we create a task for reset Post vote count"""
 from celery import shared_task
 from .models import Post
-import logging
-logger = logging.getLogger('celery')
+
 
 @shared_task
 def reset_post_vote():

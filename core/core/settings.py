@@ -196,12 +196,9 @@ CORS_ALLOW_METHODS = [
 ]
 
 # celery configuration
-if DEBUG:
-    broker_url = 'rabbitmq://localhost:5672'
-    result_backend = 'rabbitmq://localhost:5672'
-else:
-    broker_url = 'rabbitmq://3.125.122.241:5672'
-    result_backend = 'rabbitmq://3.125.122.241:5672'
+
+broker_url = 'rabbitmq://3.125.122.241:5672'
+result_backend = 'rabbitmq://3.125.122.241:5672'
 accept_content = ['application/json']
 task_serializer = 'json'
 result_serializer = 'json'
@@ -223,12 +220,6 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'filename': './core/debug.log',
             'formatter': 'simple'
-        },
-        'celery': {
-            'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': './core/celery.log',
-            'formatter': 'simple',
         }
         
     },
@@ -237,12 +228,7 @@ LOGGING = {
             'handlers': ['file'],
             'level': 'DEBUG',
             'propagate': True,
-        },
-        'celery': {
-            'handlers': ['celery'],
-            'level': 'INFO',
-            'propagate': False
-        },
+        }
         
     },
     'formatters':{

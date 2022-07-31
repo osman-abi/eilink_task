@@ -4,8 +4,6 @@ from celery import Celery
 from django.conf import settings
 from celery.schedules import crontab
 
-import logging
-logger = logging.getLogger('celery')
 
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
