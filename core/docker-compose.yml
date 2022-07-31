@@ -1,14 +1,13 @@
 version: "3.8"
 services:
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq
+  redis:
+    image: redis:alpine
+    container_name: redis
     restart: always
     ports:
-      - 5672:5672
-      - 15672:15672
+      - 6379:6379
     command:
-      - rabbitmq-server
+      - redis-server
   db:
     image: postgres
     ports:
@@ -42,7 +41,7 @@ services:
     container_name: celery_beat
     depends_on:
       - db
-      - rabbitmq
+      - redis
       - app
   celery_worker:
     restart: always
@@ -52,7 +51,7 @@ services:
     container_name: celery_worker
     depends_on:
       - db
-      - rabbitmq
+      - redis
       - app
   nginx:
     build:
