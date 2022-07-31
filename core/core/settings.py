@@ -176,7 +176,7 @@ import os
 
 STATIC_URL = '/static/'
 
-if DEBUG:
+if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 else:
     STATICFILES_DIRS = [
