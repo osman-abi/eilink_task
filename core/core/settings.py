@@ -197,14 +197,14 @@ CORS_ALLOW_METHODS = [
 
 # celery configuration
 
-broker_url = 'redis://3.125.122.241:6379'
-result_backend = 'redis://3.125.122.241:6379'
-accept_content = ['application/json']
-task_serializer = 'json'
-result_serializer = 'json'
-timezone = 'Asia/Baku'
-task_acks_late = True
-worker_prefetch_multiplier = 1
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Baku'
+CELERY_ACKS_LATE = True
+CELERYD_PREFETCH_MULTIPLIER = 1
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
