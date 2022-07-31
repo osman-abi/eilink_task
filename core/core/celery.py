@@ -21,7 +21,6 @@ app.conf.beat_schedule = {
 
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
-app.conf.task_queue_max_priority = 10
 app.autodiscover_tasks()
 
 @app.task(bind=True)
