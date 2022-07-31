@@ -1,5 +1,12 @@
 version: "3.8"
 services:
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: always
+    ports:
+      - 6379:6379
+    command: redis-server
   db:
     image: postgres
     ports:
@@ -33,6 +40,7 @@ services:
     container_name: celery_beat
     depends_on:
       - db
+      - redis
       - app
   celery_worker:
     restart: always
@@ -42,6 +50,7 @@ services:
     container_name: celery_worker
     depends_on:
       - db
+      - redis
       - app
   nginx:
     build:
