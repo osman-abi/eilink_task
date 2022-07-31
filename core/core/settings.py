@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = '&rmr@(vnqdntdg3-rb#_^p%kd_c+!%7b24q(lpw2@rjs!8y!f#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -175,9 +175,13 @@ USE_TZ = True
 import os
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "/static/")]
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
+if DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+else:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static/")
+    ]
 # corsheaders configuration
 
 CORS_ORIGIN_ALLOW_ALL = True
