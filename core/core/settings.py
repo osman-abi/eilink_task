@@ -197,8 +197,8 @@ CORS_ALLOW_METHODS = [
 
 # celery configuration
 
-broker_url = 'redis://3.125.122.241:5672'
-result_backend = 'redis://3.125.122.241:5672'
+broker_url = 'redis://3.125.122.241:6379'
+result_backend = 'redis://3.125.122.241:6379'
 accept_content = ['application/json']
 task_serializer = 'json'
 result_serializer = 'json'
