@@ -2,6 +2,14 @@ version: "3.8"
 services:
   redis:
     image: redis:alpine
+    container_name: redis
+    restart: always
+    volumes:
+    - ./redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    command:
+      - redis-server
   db:
     image: postgres
     ports:
