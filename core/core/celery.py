@@ -14,8 +14,8 @@ app.conf.update(timezone = 'Asia/Baku')
 app.conf.beat_schedule = {
     "reset_post_vote":{
         "task":"post.tasks.reset_post_vote",
-        # "schedule":crontab(day_of_month="*", hour=7, minute=30)
-        "schedule":crontab(minute="*")
+        "schedule":crontab(day_of_month="*", hour=23, minute=59)
+        # "schedule":crontab(minute="*")
     }
 }
 

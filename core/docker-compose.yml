@@ -8,17 +8,13 @@ services:
       - 6379:6379
     command: redis-server
   db:
-    image: postgres
-    ports:
-      - 5432:5432
+    image: postgres:9.6.6
+    restart: always
     volumes:
-      - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_HOST=postgres
-      - POSTGRES_DB=eilink_db
-      - POSTGRES_USER=eilink_user
-      - POSTGRES_PASSWORD=eilink_password
-    container_name: postgres_db
+        - ./pgdb/:/var/lib/postgresql/data
+    ports:
+        - "5432:5432"
+    env_file: ./.env
   app:
     build:
       context: .
