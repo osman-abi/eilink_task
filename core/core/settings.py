@@ -131,7 +131,7 @@ else:
             'NAME': 'eilink_db',
             'USER': 'eilink_user',
             'PASSWORD': 'eilink_password',
-            'HOST': '3.70.24.182',
+            'HOST': 'postgres',
             'PORT': '5432',
         }
     }
