@@ -14,7 +14,7 @@ services:
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_HOST=3.70.24.182
+      - POSTGRES_HOST=postgres
       - POSTGRES_DB=eilink_db
       - POSTGRES_USER=eilink_user
       - POSTGRES_PASSWORD=eilink_password
