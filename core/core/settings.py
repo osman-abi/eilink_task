@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = '&rmr@(vnqdntdg3-rb#_^p%kd_c+!%7b24q(lpw2@rjs!8y!f#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -119,7 +119,7 @@ AUTH_USER_MODEL = 'account.User'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-if DEBUG:
+if not DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
