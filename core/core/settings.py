@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = '&rmr@(vnqdntdg3-rb#_^p%kd_c+!%7b24q(lpw2@rjs!8y!f#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -119,7 +119,7 @@ AUTH_USER_MODEL = 'account.User'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-if not DEBUG:
+if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -177,7 +177,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if not DEBUG:
+if DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 else:
     STATICFILES_DIRS = [
