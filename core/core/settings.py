@@ -129,7 +129,7 @@ if DEBUG:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'USER': os.environ.get('POSTGRES_USER'),
             'NAME': os.environ.get('POSTGRES_DB'),
             'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
