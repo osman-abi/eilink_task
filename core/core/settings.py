@@ -131,7 +131,7 @@ else:
             'NAME': 'eilink_db',
             'USER': 'eilink_user',
             'PASSWORD': 'eilink_password',
-            'HOST': '3.125.122.241',
+            'HOST': '3.70.24.182',
             'PORT': '5432',
         }
     }
