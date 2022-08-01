@@ -7,7 +7,7 @@ services:
     ports:
       - 6379:6379
     command: redis-server
-  db:
+  postgres:
     image: postgres:9.6.6
     restart: always
     volumes:
@@ -25,7 +25,7 @@ services:
     container_name: django_app
     command: /venv/bin/gunicorn core.wsgi --bind 0.0.0.0:8000
     depends_on:
-      - db
+      - postgres
   celery_beat:
     restart: always
     build:
@@ -35,7 +35,7 @@ services:
       - .:/django
     container_name: celery_beat
     depends_on:
-      - db
+      - postgres
       - redis
       - app
     environment:
@@ -47,7 +47,7 @@ services:
     command: /venv/bin/celery -A core worker -l INFO
     container_name: celery_worker
     depends_on:
-      - db
+      - postgres
       - redis
       - app
   nginx:
